@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IUnit
 {
     private const float Tolerance = 0.1f;
     private const string HorizontalAxisName = "Horizontal";
@@ -9,13 +9,14 @@ public class Player : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private Transform movePoint;
     
-    // Start is called before the first frame update
+    public Vector3 CurrentPosition { get; private set; }
+
     private void Start()
     {
         movePoint.parent = null;
+        CurrentPosition = movePoint.position;
     }
 
-    // Update is called once per frame
     private void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
@@ -27,10 +28,12 @@ public class Player : MonoBehaviour
             if (Mathf.Abs(Input.GetAxisRaw(HorizontalAxisName)) == 1f)
             {
                 movePoint.position += new Vector3(Input.GetAxisRaw(HorizontalAxisName), 0f, 0f);
+                CurrentPosition = movePoint.position;
             }
             if (Mathf.Abs(Input.GetAxisRaw(VerticalAxisName)) == 1f)
             {
                 movePoint.position += new Vector3(0f, Input.GetAxisRaw(VerticalAxisName), 0f);
+                CurrentPosition = movePoint.position;
             }
         }
     }
