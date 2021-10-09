@@ -5,10 +5,10 @@ using UnityEngine;
 public class Camera : MonoBehaviour
 {
 
-    [SerializeField] private Transform target;
-    [SerializeField] private float smoothing;
-    [SerializeField] private Vector2 minPos;
-    [SerializeField] private Vector2 maxPos;
+    [SerializeField] private Transform _target;
+    [SerializeField] private float _smoothing;
+    [SerializeField] private Vector2 _minPos;
+    [SerializeField] private Vector2 _maxPos;
 
     // Start is called before the first frame update
     private void Start()
@@ -18,13 +18,13 @@ public class Camera : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (transform.position != target.position) {
-            Vector3 targetPos = new Vector3(target.position.x, target.position.y, transform.position.z);
+        if (transform.position != _target.position) {
+            Vector3 targetPos = new Vector3(_target.position.x, _target.position.y, transform.position.z);
 
-            targetPos.x = Mathf.Clamp(targetPos.x, minPos.x, maxPos.x);
-            targetPos.y = Mathf.Clamp(targetPos.y, minPos.y, maxPos.y);
+            targetPos.x = Mathf.Clamp(targetPos.x, _minPos.x, _maxPos.x);
+            targetPos.y = Mathf.Clamp(targetPos.y, _minPos.y, _maxPos.y);
 
-            transform.position = Vector3.Lerp(transform.position, targetPos, smoothing);
+            transform.position = Vector3.Lerp(transform.position, targetPos, _smoothing);
         }
     }
 }

@@ -6,39 +6,39 @@ public class Player : MonoBehaviour, IUnit
     private const string HorizontalAxisName = "Horizontal";
     private const string VerticalAxisName = "Vertical";
 
-    [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private Transform movePoint;
-    [SerializeField] private Animator animator;
+    [SerializeField] private float _moveSpeed = 5f;
+    [SerializeField] private Transform _movePoint;
+    [SerializeField] private Animator _animator;
 
     public Vector3 CurrentPosition { get; private set; }
 
     private void Start()
     {
-        movePoint.parent = null;
-        CurrentPosition = movePoint.position;
+        _movePoint.parent = null;
+        CurrentPosition = _movePoint.position;
     }
 
     private void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, _movePoint.position, _moveSpeed * Time.deltaTime);
         float horizontalAxisInput = Input.GetAxisRaw(HorizontalAxisName);
         float verticalAxisInput = Input.GetAxisRaw(VerticalAxisName);
 
         if (!isCurrentlyMoving(horizontalAxisInput, verticalAxisInput) &&
-            Vector3.Distance(transform.position, movePoint.position) <= Tolerance)
+            Vector3.Distance(transform.position, _movePoint.position) <= Tolerance)
         {
             if (Mathf.Abs(horizontalAxisInput) == 1f)
             {
-                movePoint.position += new Vector3(horizontalAxisInput, 0f, 0f);
-                CurrentPosition = movePoint.position;
+                _movePoint.position += new Vector3(horizontalAxisInput, 0f, 0f);
+                CurrentPosition = _movePoint.position;
             }
             if (Mathf.Abs(verticalAxisInput) == 1f)
             {
-                movePoint.position += new Vector3(0f, verticalAxisInput, 0f);
-                CurrentPosition = movePoint.position;
+                _movePoint.position += new Vector3(0f, verticalAxisInput, 0f);
+                CurrentPosition = _movePoint.position;
             }
-            animator.SetFloat(HorizontalAxisName, horizontalAxisInput);
-            animator.SetFloat(VerticalAxisName, verticalAxisInput);
+            _animator.SetFloat(HorizontalAxisName, horizontalAxisInput);
+            _animator.SetFloat(VerticalAxisName, verticalAxisInput);
         }
     }
 
