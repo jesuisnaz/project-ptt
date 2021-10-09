@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Camera : MonoBehaviour
 {
@@ -9,12 +7,6 @@ public class Camera : MonoBehaviour
     [SerializeField] private float _smoothing;
     [SerializeField] private Vector2 _minPos;
     [SerializeField] private Vector2 _maxPos;
-
-    // Start is called before the first frame update
-    private void Start()
-    {
-        
-    }
 
     private void LateUpdate()
     {
