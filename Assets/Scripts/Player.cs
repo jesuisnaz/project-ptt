@@ -20,13 +20,10 @@ public class Player : MonoBehaviour
     {
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
 
-        if (Vector3.Distance(transform.position, movePoint.position) <= Tolerance)
-        {
-            if (Mathf.Abs(Input.GetAxisRaw(HorizontalAxisName)) != 0f &&
-                Mathf.Abs(Input.GetAxisRaw(VerticalAxisName)) != 0f) {
-                return;
-            }
 
+        if (!isCurrentlyMoving(Input.GetAxisRaw(HorizontalAxisName), Input.GetAxisRaw(VerticalAxisName)) &&
+            Vector3.Distance(transform.position, movePoint.position) <= Tolerance)
+        {
             if (Mathf.Abs(Input.GetAxisRaw(HorizontalAxisName)) == 1f)
             {
                 movePoint.position += new Vector3(Input.GetAxisRaw(HorizontalAxisName), 0f, 0f);
@@ -36,5 +33,11 @@ public class Player : MonoBehaviour
                 movePoint.position += new Vector3(0f, Input.GetAxisRaw(VerticalAxisName), 0f);
             }
         }
+    }
+
+    private bool isCurrentlyMoving(float horizontalAxis, float verticalAxis)
+    {
+        return Mathf.Abs(horizontalAxis) != 0f &&
+                Mathf.Abs(verticalAxis) != 0f;
     }
 }
