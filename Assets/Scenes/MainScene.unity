@@ -744,6 +744,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7673e6d9ae7817f4684ebffc6ad07d0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 5
+  movePoint: {fileID: 615408789}
 --- !u!1 &2087444752
 GameObject:
   m_ObjectHideFlags: 0
