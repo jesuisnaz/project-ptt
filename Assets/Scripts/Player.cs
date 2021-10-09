@@ -11,14 +11,12 @@ public class Player : MonoBehaviour, IUnit
     
     public Vector3 CurrentPosition { get; private set; }
 
-    // Start is called before the first frame update
     private void Start()
     {
         movePoint.parent = null;
         CurrentPosition = movePoint.position;
     }
 
-    // Update is called once per frame
     private void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
