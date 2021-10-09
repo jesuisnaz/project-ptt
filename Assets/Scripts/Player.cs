@@ -27,11 +27,11 @@ public class Player : MonoBehaviour
                 return;
             }
 
-            if (Mathf.Abs(Input.GetAxisRaw(HorizontalAxisName) - 1f) < Tolerance)
+            if (Mathf.Abs(Input.GetAxisRaw(HorizontalAxisName)) == 1f)
             {
                 movePoint.position += new Vector3(Input.GetAxisRaw(HorizontalAxisName), 0f, 0f);
             }
-            if (Mathf.Abs(Input.GetAxisRaw(VerticalAxisName) - 1f) < Tolerance)
+            if (Mathf.Abs(Input.GetAxisRaw(VerticalAxisName)) == 1f)
             {
                 movePoint.position += new Vector3(0f, Input.GetAxisRaw(VerticalAxisName), 0f);
             }
