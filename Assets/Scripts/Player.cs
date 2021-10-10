@@ -30,13 +30,12 @@ public class Player : MonoBehaviour, IUnit
             if (Mathf.Abs(horizontalAxisInput) == 1f)
             {
                 _movePoint.position += new Vector3(horizontalAxisInput, 0f, 0f);
-                CurrentPosition = _movePoint.position;
             }
             if (Mathf.Abs(verticalAxisInput) == 1f)
             {
                 _movePoint.position += new Vector3(0f, verticalAxisInput, 0f);
-                CurrentPosition = _movePoint.position;
             }
+            CurrentPosition = _movePoint.position;
             _animator.SetFloat(HorizontalAxisName, horizontalAxisInput);
             _animator.SetFloat(VerticalAxisName, verticalAxisInput);
         }
