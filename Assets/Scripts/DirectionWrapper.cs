@@ -79,6 +79,41 @@ public class DirectionWrapper
                 }
                 break;
         }
+    }
+    
+    public DirectionWrapper(string axisName)
+    {
+        AxisName = axisName;
+        AxisValue = Input.GetAxisRaw(AxisName);
+        switch (axisName)
+        {
+            case VerticalAxisName:
+                switch (AxisValue)
+                {
+                    case 1f:
+                        Direction = Direction.Up;
+                        Vector3Value = Vector3.up;
+                        break;
+                    case -1f:
+                        Direction = Direction.Down;
+                        Vector3Value = Vector3.down;
+                        break;
+                }
+                break;
+            case HorizontalAxisName:
+                switch (AxisValue)
+                {
+                    case 1f:
+                        Direction = Direction.Right;
+                        Vector3Value = Vector3.right;
+                        break;
+                    case -1f:
+                        Direction = Direction.Left;
+                        Vector3Value = Vector3.left;
+                        break;
+                }
+                break;
+        }
 
     }
 }

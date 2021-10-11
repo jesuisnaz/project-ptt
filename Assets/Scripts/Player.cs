@@ -38,9 +38,10 @@ public class Player : MonoBehaviour, IUnit
         CurrentPosition = _movePoint.position;
     }
 
-    public void SetAnimator(DirectionWrapper directionWrapper)
+    public void SetAnimator(DirectionWrapper horizontalDirectionWrapper, DirectionWrapper verticalDirectionWrapper)
     {
-        _animator.SetFloat(directionWrapper.AxisName, directionWrapper.AxisValue);
+        _animator.SetFloat(horizontalDirectionWrapper.AxisName, horizontalDirectionWrapper.AxisValue);
+        _animator.SetFloat(verticalDirectionWrapper.AxisName, verticalDirectionWrapper.AxisValue);
     }
 }
 
