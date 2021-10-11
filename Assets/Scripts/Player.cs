@@ -2,15 +2,24 @@
 
 public class Player : MonoBehaviour, IUnit
 {
-    private const float Tolerance = 0.1f;
-    private const string HorizontalAxisName = "Horizontal";
-    private const string VerticalAxisName = "Vertical";
-
     [SerializeField] private float _moveSpeed = 5f;
     [SerializeField] private Transform _movePoint;
     [SerializeField] private Animator _animator;
-
+    [SerializeField] private PlayerController _playerController;
+    private DirectionWrapper _currentDirection;
     public Vector3 CurrentPosition { get; private set; }
+
+    private void Awake()
+    {
+        _playerController.OnMoveChange += Move;
+        _playerController.OnAnimationChange += SetAnimator;
+    }
+
+    private void OnDestroy()
+    {
+        _playerController.OnMoveChange -= Move;
+        _playerController.OnAnimationChange -= SetAnimator;
+    }
 
     private void Start()
     {
@@ -21,29 +30,17 @@ public class Player : MonoBehaviour, IUnit
     private void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, _movePoint.position, _moveSpeed * Time.deltaTime);
-        float horizontalAxisInput = Input.GetAxisRaw(HorizontalAxisName);
-        float verticalAxisInput = Input.GetAxisRaw(VerticalAxisName);
-
-        if (!isCurrentlyMoving(horizontalAxisInput, verticalAxisInput) &&
-            Vector3.Distance(transform.position, _movePoint.position) <= Tolerance)
-        {
-            if (Mathf.Abs(horizontalAxisInput) == 1f)
-            {
-                _movePoint.position += new Vector3(horizontalAxisInput, 0f, 0f);
-            }
-            if (Mathf.Abs(verticalAxisInput) == 1f)
-            {
-                _movePoint.position += new Vector3(0f, verticalAxisInput, 0f);
-            }
-            CurrentPosition = _movePoint.position;
-            _animator.SetFloat(HorizontalAxisName, horizontalAxisInput);
-            _animator.SetFloat(VerticalAxisName, verticalAxisInput);
-        }
     }
 
-    private bool isCurrentlyMoving(float horizontalAxis, float verticalAxis)
+    public void Move(DirectionWrapper directionWrapper)
     {
-        return Mathf.Abs(horizontalAxis) != 0f &&
-                Mathf.Abs(verticalAxis) != 0f;
+        _movePoint.position += directionWrapper.Vector3Value;
+        CurrentPosition = _movePoint.position;
+    }
+
+    public void SetAnimator(DirectionWrapper directionWrapper)
+    {
+        _animator.SetFloat(directionWrapper.AxisName, directionWrapper.AxisValue);
     }
 }
+
