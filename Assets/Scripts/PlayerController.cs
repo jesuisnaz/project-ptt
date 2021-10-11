@@ -4,36 +4,52 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Transform _movePoint;
+    [SerializeField] private Vector2 _minMapCordinatesPoint;
+    [SerializeField] private Vector2 _maxMapCordinatesPoint;
 
     private const float Tolerance = 0.1f;
     private const string HorizontalAxisName = "Horizontal";
     private const string VerticalAxisName = "Vertical";
    
     public Action<DirectionWrapper> OnMoveChange = delegate {};
-    public Action<DirectionWrapper> OnAnimationChange = delegate {};
-    private bool isCurrentlyMoving(float horizontalAxis, float verticalAxis)
+    public Action<DirectionWrapper, DirectionWrapper> OnAnimationChange = delegate {};
+    
+    private bool IsCurrentlyMoving(DirectionWrapper horizontalDirectionWrapper, DirectionWrapper verticalDirectionWrapper)
     {
-        return Mathf.Abs(horizontalAxis) != 0f &&
-               Mathf.Abs(verticalAxis) != 0f;
+        return Mathf.Abs(horizontalDirectionWrapper.AxisValue) != 0f && Mathf.Abs(verticalDirectionWrapper.AxisValue) != 0f;
+    }
+
+    private bool IsWithinBounds(DirectionWrapper horizontalDirectionWrapper, DirectionWrapper verticalDirectionWrapper) {
+        float afterMoveHorizontal = transform.position.x + horizontalDirectionWrapper.AxisValue;
+        float afterMoveVertical = transform.position.y + verticalDirectionWrapper.AxisValue;
+        return _minMapCordinatesPoint.x <= afterMoveHorizontal && afterMoveHorizontal <= _maxMapCordinatesPoint.x &&
+               _minMapCordinatesPoint.y <= afterMoveVertical && afterMoveVertical <= _maxMapCordinatesPoint.y;
     }
 
     private void Update()
     {
-        float horizontalAxisInput = Input.GetAxisRaw(HorizontalAxisName);
-        float verticalAxisInput = Input.GetAxisRaw(VerticalAxisName);
-        if (!isCurrentlyMoving(horizontalAxisInput, verticalAxisInput) &&
+        ControlCommonMovement();
+    }
+
+    private void ControlCommonMovement()
+    {
+        DirectionWrapper horizontalDirectionWrapper = new DirectionWrapper(HorizontalAxisName);
+        DirectionWrapper verticalDirectionWrapper = new DirectionWrapper(VerticalAxisName);
+        if (!IsCurrentlyMoving(horizontalDirectionWrapper, verticalDirectionWrapper) &&
             Vector3.Distance(transform.position, _movePoint.position) <= Tolerance)
         {
-            if (Mathf.Abs(horizontalAxisInput) == 1f)
+            if (IsWithinBounds(horizontalDirectionWrapper, verticalDirectionWrapper))
             {
-                OnMoveChange(new DirectionWrapper(HorizontalAxisName, horizontalAxisInput));
+                if (Mathf.Abs(horizontalDirectionWrapper.AxisValue) == 1f)
+                {
+                    OnMoveChange(horizontalDirectionWrapper);
+                }
+                if (Mathf.Abs(verticalDirectionWrapper.AxisValue) == 1f)
+                {
+                    OnMoveChange(verticalDirectionWrapper);
+                }
             }
-            if (Mathf.Abs(verticalAxisInput) == 1f)
-            {
-                OnMoveChange(new DirectionWrapper(VerticalAxisName, verticalAxisInput));
-            }
-            OnAnimationChange(new DirectionWrapper(VerticalAxisName, verticalAxisInput));
-            OnAnimationChange(new DirectionWrapper(HorizontalAxisName, horizontalAxisInput));
+            OnAnimationChange(horizontalDirectionWrapper, verticalDirectionWrapper);
         }
     }
 }
