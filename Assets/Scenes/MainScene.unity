@@ -1043,8 +1043,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _movePoint: {fileID: 32291596}
-  _minPoint: {x: 0, y: 0}
-  _maxPoint: {x: 31, y: 17}
+  _minMapCordinatesPoint: {x: 0, y: 0}
+  _maxMapCordinatesPoint: {x: 31, y: 17}
 --- !u!1001 &60337810664492000
 PrefabInstance:
   m_ObjectHideFlags: 0
