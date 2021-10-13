@@ -7,6 +7,7 @@ public class Player : MonoBehaviour, IUnit
     [SerializeField] private Animator _animator;
     [SerializeField] private PlayerController _playerController;
     [SerializeField] private PumpkinManager _pumpkinManager;
+    [SerializeField] private SoundManager _soundManager;
     private DirectionWrapper _currentDirection;
 
     public Vector3 CurrentPosition { get; private set; }
@@ -38,6 +39,7 @@ public class Player : MonoBehaviour, IUnit
     {
         if (other.gameObject.CompareTag("Pumpkin")) {
             _pumpkinManager.PickUpPumpkin(other.gameObject);
+            _soundManager.playSound("PumpkinPickedUp");      
         }
         Debug.Log("collision with object: " + other.tag);
     }
