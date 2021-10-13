@@ -6,7 +6,9 @@ public class Player : MonoBehaviour, IUnit
     [SerializeField] private Transform _movePoint;
     [SerializeField] private Animator _animator;
     [SerializeField] private PlayerController _playerController;
+    [SerializeField] private PumpkinManager _pumpkinManager;
     private DirectionWrapper _currentDirection;
+
     public Vector3 CurrentPosition { get; private set; }
 
     private void Awake()
@@ -30,6 +32,14 @@ public class Player : MonoBehaviour, IUnit
     private void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, _movePoint.position, _moveSpeed * Time.deltaTime);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Pumpkin")) {
+            _pumpkinManager.PickUpPumpkin(other.gameObject);
+        }
+        Debug.Log("collision with object: " + other.tag);
     }
 
     public void Move(DirectionWrapper directionWrapper)
