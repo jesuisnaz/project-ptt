@@ -3,9 +3,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private Player _player;
     [SerializeField] private Transform _movePoint;
     [SerializeField] private Vector2 _minMapCordinatesPoint;
     [SerializeField] private Vector2 _maxMapCordinatesPoint;
+    [SerializeField] private Stone[] _stones;
 
     private const float Tolerance = 0.1f;
     private const string HorizontalAxisName = "Horizontal";
@@ -19,11 +21,24 @@ public class PlayerController : MonoBehaviour
         return Mathf.Abs(horizontalDirectionWrapper.AxisValue) != 0f && Mathf.Abs(verticalDirectionWrapper.AxisValue) != 0f;
     }
 
-    private bool IsWithinBounds(DirectionWrapper horizontalDirectionWrapper, DirectionWrapper verticalDirectionWrapper) {
-        float afterMoveHorizontal = transform.position.x + horizontalDirectionWrapper.AxisValue;
-        float afterMoveVertical = transform.position.y + verticalDirectionWrapper.AxisValue;
-        return _minMapCordinatesPoint.x <= afterMoveHorizontal && afterMoveHorizontal <= _maxMapCordinatesPoint.x &&
-               _minMapCordinatesPoint.y <= afterMoveVertical && afterMoveVertical <= _maxMapCordinatesPoint.y;
+    private bool IsLegalMove(DirectionWrapper horizontalDirectionWrapper, DirectionWrapper verticalDirectionWrapper) {
+        float afterMoveHorizontal = _player.CurrentPosition.x + horizontalDirectionWrapper.AxisValue; 
+        float afterMoveVertical = _player.CurrentPosition.y + verticalDirectionWrapper.AxisValue;
+        Vector3 afterMovePosition = new Vector3(afterMoveHorizontal, afterMoveVertical);
+        bool isWithinBounds = _minMapCordinatesPoint.x <= afterMoveHorizontal &&
+                              afterMoveHorizontal <= _maxMapCordinatesPoint.x &&
+                              _minMapCordinatesPoint.y <= afterMoveVertical &&
+                              afterMoveVertical <= _maxMapCordinatesPoint.y;
+        bool isNotStuckIntoStone = true;
+        foreach (var stone in _stones)
+        {
+            if (stone.CurrentPosition == afterMovePosition)
+            {
+                isNotStuckIntoStone = false;
+            }
+        }
+        
+        return isWithinBounds && isNotStuckIntoStone;
     }
 
     private void Update()
@@ -38,7 +53,7 @@ public class PlayerController : MonoBehaviour
         if (!IsCurrentlyMoving(horizontalDirectionWrapper, verticalDirectionWrapper) &&
             Vector3.Distance(transform.position, _movePoint.position) <= Tolerance)
         {
-            if (IsWithinBounds(horizontalDirectionWrapper, verticalDirectionWrapper))
+            if (IsLegalMove(horizontalDirectionWrapper, verticalDirectionWrapper))
             {
                 if (Mathf.Abs(horizontalDirectionWrapper.AxisValue) == 1f)
                 {
