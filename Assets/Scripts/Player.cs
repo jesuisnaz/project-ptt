@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 
 public class Player : MonoBehaviour, IUnit
 {
@@ -9,7 +10,7 @@ public class Player : MonoBehaviour, IUnit
     [SerializeField] private PumpkinManager _pumpkinManager;
     [SerializeField] private SoundManager _soundManager;
     private DirectionWrapper _currentDirection;
-
+    public Animator animator;
     public Vector3 CurrentPosition { get; private set; }
 
     private void Awake()
@@ -28,11 +29,16 @@ public class Player : MonoBehaviour, IUnit
     {
         _movePoint.parent = null;
         CurrentPosition = _movePoint.position;
+        animator.SetBool("isPlayerBat", false);
     }
 
     private void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, _movePoint.position, _moveSpeed * Time.deltaTime);
+        if (Input.GetKeyDown(KeyCode.Space)) // TODO: move the logic into pumpkin manager
+        {
+            TransformPlayer();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -54,6 +60,20 @@ public class Player : MonoBehaviour, IUnit
     {
         _animator.SetFloat(horizontalDirectionWrapper.AxisName, horizontalDirectionWrapper.AxisValue);
         _animator.SetFloat(verticalDirectionWrapper.AxisName, verticalDirectionWrapper.AxisValue);
+    }
+
+    private void TransformPlayer()
+    {
+        if (animator.GetBool("isPlayerBat") == false)
+        {
+            animator.SetBool("isPlayerBat", true);
+            _moveSpeed = 7.5f;
+        }
+        else
+        {
+            animator.SetBool("isPlayerBat", false);
+            _moveSpeed = 5f;
+        }
     }
 }
 

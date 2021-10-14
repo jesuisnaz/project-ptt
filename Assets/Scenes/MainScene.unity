@@ -1934,6 +1934,12 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!95 &2109950170 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1126495937, guid: 9ec66d18d07a147e1ade1df6ca446712,
+    type: 3}
+  m_PrefabInstance: {fileID: 9043057936894758967}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2109950171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2188,6 +2194,11 @@ PrefabInstance:
       propertyPath: _stones.Array.data[5]
       value: 
       objectReference: {fileID: 142587069}
+    - target: {fileID: 9043057938274085049, guid: 9ec66d18d07a147e1ade1df6ca446712,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 2109950170}
     - target: {fileID: 9043057938274085049, guid: 9ec66d18d07a147e1ade1df6ca446712,
         type: 3}
       propertyPath: _soundManager

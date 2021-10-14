@@ -15,7 +15,8 @@ public class PlayerController : MonoBehaviour
    
     public Action<DirectionWrapper> OnMoveChange = delegate {};
     public Action<DirectionWrapper, DirectionWrapper> OnAnimationChange = delegate {};
-    
+
+
     private bool IsCurrentlyMoving(DirectionWrapper horizontalDirectionWrapper, DirectionWrapper verticalDirectionWrapper)
     {
         return Mathf.Abs(horizontalDirectionWrapper.AxisValue) != 0f && Mathf.Abs(verticalDirectionWrapper.AxisValue) != 0f;
@@ -45,6 +46,7 @@ public class PlayerController : MonoBehaviour
     {
         ControlCommonMovement();
     }
+
 
     private void ControlCommonMovement()
     {
