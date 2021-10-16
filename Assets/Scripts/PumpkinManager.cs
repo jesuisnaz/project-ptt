@@ -17,7 +17,7 @@ public class PumpkinManager : MonoBehaviour
     private void Awake()
     {
         _InstantiatedPumpkins = new List<GameObject>();
-        _ScoreText.text = "Score: " + _PumpkinCount;
+        _ScoreText.text = "Score:" + _PumpkinCount;
     }
 
     private void FixedUpdate()
@@ -32,7 +32,7 @@ public class PumpkinManager : MonoBehaviour
         _InstantiatedPumpkins.Remove(pumpkin);
         Destroy(pumpkin);
         _PumpkinCount++;
-        _ScoreText.text = "Score: " + _PumpkinCount;
+        _ScoreText.text = "Score:" + _PumpkinCount;
     }
 
     private void InstantiatePumpkin() {
