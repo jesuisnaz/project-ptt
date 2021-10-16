@@ -6,9 +6,11 @@ public class PumpkinManager : MonoBehaviour
 {
     [SerializeField] private GameObject _PumpkinPrefab;
     [SerializeField] private GameObject _Parent;
-    [SerializeField] private int _MaxPumpkinCount = 5;
-    [SerializeField] private int _MaxXPosition = 31;
-    [SerializeField] private int _MaxYPosition = 17;
+    [SerializeField] private GameObject _Player;
+    [SerializeField] private const int _MaxPumpkinCount = 5;
+    [SerializeField] private const int _SpawnMagnitude = 3;
+    [SerializeField] private const int _MaxXPosition = 31;
+    [SerializeField] private const int _MaxYPosition = 17;
     [SerializeField] private TMPro.TextMeshProUGUI _ScoreText;
 
     private List<GameObject> _InstantiatedPumpkins;
@@ -36,8 +38,15 @@ public class PumpkinManager : MonoBehaviour
     }
 
     private void InstantiatePumpkin() {
-        int x = (int)Random.Range(0, _MaxXPosition), y = (int)Random.Range(0, _MaxYPosition), z = 0;
-        Vector3 position = new Vector3(x, y, z);
+        Vector3 position;
+        while (true)
+        {
+            int x = (int)Random.Range(0, _MaxXPosition), y = (int)Random.Range(0, _MaxYPosition), z = 0;
+            position = new Vector3(x, y, z);
+            if ((position - _Player.transform.position).magnitude >= _SpawnMagnitude) {
+                break;
+            }
+        }
         Quaternion rotation = new Quaternion(0f, 0f, 0f, 0f);
         GameObject newPumpkin = Instantiate(_PumpkinPrefab, position, rotation, _Parent.transform);
         _InstantiatedPumpkins.Add(newPumpkin);

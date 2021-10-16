@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform _movePoint;
     [SerializeField] private Vector2 _minMapCordinatesPoint;
     [SerializeField] private Vector2 _maxMapCordinatesPoint;
-    [SerializeField] private Stone[] _stones;
+    [SerializeField] private GameObject _stoneParent;
     [SerializeField] private SoundManager _soundManager;
     [SerializeField] private Animator animator;
 
@@ -33,8 +33,10 @@ public class PlayerController : MonoBehaviour
                               _minMapCordinatesPoint.y <= afterMoveVertical &&
                               afterMoveVertical <= _maxMapCordinatesPoint.y;
         bool isNotStuckIntoStone = true;
-        foreach (var stone in _stones)
+        Debug.Log("before foreach");
+        foreach (var stone in _stoneParent.GetComponentsInChildren<Stone>())
         {
+            Debug.Log("in foreach");
             if (stone.CurrentPosition == afterMovePosition)
             {
                 isNotStuckIntoStone = false;
