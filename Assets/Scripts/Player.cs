@@ -9,6 +9,8 @@ public class Player : MonoBehaviour, IUnit
     [SerializeField] private PlayerController _playerController;
     [SerializeField] private PumpkinManager _pumpkinManager;
     [SerializeField] private SoundManager _soundManager;
+    [SerializeField] private TMPro.TextMeshProUGUI _TransformationText;
+    private int timeToTransformation;
     private DirectionWrapper _currentDirection;
     public Animator animator;
     public Vector3 CurrentPosition { get; private set; }
@@ -30,6 +32,8 @@ public class Player : MonoBehaviour, IUnit
         _movePoint.parent = null;
         CurrentPosition = _movePoint.position;
         animator.SetBool("isPlayerBat", false);
+        timeToTransformation = 500;
+        _TransformationText.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -38,6 +42,29 @@ public class Player : MonoBehaviour, IUnit
         if (Input.GetKeyDown(KeyCode.Space)) // TODO: move the logic into pumpkin manager
         {
             TransformPlayer();
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (animator.GetBool("isPlayerBat"))
+        {
+            _TransformationText.gameObject.SetActive(true);
+            if (timeToTransformation%50 == 0)
+            {
+                _TransformationText.text = "Time before transformation: " + timeToTransformation / 50;
+            }
+            timeToTransformation -= 1;
+            if (timeToTransformation == 0)
+            {
+                TransformPlayer();
+            }
+        }
+        else
+        {
+            timeToTransformation = 500;
+            _TransformationText.gameObject.SetActive(false);
+
         }
     }
 

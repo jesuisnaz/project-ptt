@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
    
     public Action<DirectionWrapper> OnMoveChange = delegate {};
     public Action<DirectionWrapper, DirectionWrapper> OnAnimationChange = delegate {};
+    public Animator animator;
 
 
     private bool IsCurrentlyMoving(DirectionWrapper horizontalDirectionWrapper, DirectionWrapper verticalDirectionWrapper)
@@ -38,7 +39,10 @@ public class PlayerController : MonoBehaviour
                 isNotStuckIntoStone = false;
             }
         }
-        
+        if (animator.GetBool("isPlayerBat") == true)
+        {
+            isNotStuckIntoStone = true;
+        }
         return isWithinBounds && isNotStuckIntoStone;
     }
 
