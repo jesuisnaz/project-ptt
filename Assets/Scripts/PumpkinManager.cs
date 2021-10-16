@@ -10,6 +10,7 @@ public class PumpkinManager : MonoBehaviour
     [SerializeField] private int _MaxXPosition = 31;
     [SerializeField] private int _MaxYPosition = 17;
     [SerializeField] private TMPro.TextMeshProUGUI _ScoreText;
+    [SerializeField] private Player player;
 
     private List<GameObject> _InstantiatedPumpkins;
     private int _PumpkinCount = 0;
@@ -33,6 +34,10 @@ public class PumpkinManager : MonoBehaviour
         Destroy(pumpkin);
         _PumpkinCount++;
         _ScoreText.text = "Score: " + _PumpkinCount;
+        if (_PumpkinCount%10 == 0)
+        {
+            player.SetCanTransform(true);
+        }
     }
 
     private void InstantiatePumpkin() {

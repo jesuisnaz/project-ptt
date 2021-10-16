@@ -1613,6 +1613,7 @@ MonoBehaviour:
   _MaxXPosition: 31
   _MaxYPosition: 17
   _ScoreText: {fileID: 738344837}
+  player: {fileID: 2109950174}
 --- !u!1 &1322547529
 GameObject:
   m_ObjectHideFlags: 0

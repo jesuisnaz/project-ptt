@@ -13,6 +13,7 @@ public class Player : MonoBehaviour, IUnit
     [SerializeField] private Animator animator;
     private DirectionWrapper _currentDirection;
     private int timeToTransformation;
+    public bool canTransform;
     public Vector3 CurrentPosition { get; private set; }
 
     private void Awake()
@@ -33,6 +34,7 @@ public class Player : MonoBehaviour, IUnit
         CurrentPosition = _movePoint.position;
         animator.SetBool("isPlayerBat", false);
         timeToTransformation = 500;
+        canTransform = false;
     }
 
     private void Update()
@@ -90,20 +92,28 @@ public class Player : MonoBehaviour, IUnit
 
     private void TransformPlayer()
     {
-        if (animator.GetBool("isPlayerBat") == false)
+        if (canTransform == true)
         {
-            animator.SetBool("isPlayerBat", true);
-            _moveSpeed *= 1.5f;
-            _soundManager.playSound("Transformation");
-            _soundManager.playSound("BatFly");
+            if (animator.GetBool("isPlayerBat") == false)
+            {
+                animator.SetBool("isPlayerBat", true);
+                _moveSpeed *= 1.5f;
+                _soundManager.playSound("Transformation");
+                _soundManager.playSound("BatFly");
+            }
+            else
+            {
+                animator.SetBool("isPlayerBat", false);
+                _moveSpeed /= 1.5f;
+                _soundManager.stopSound("BatFly");
+                _soundManager.playSound("Transformation");
+                canTransform = false;
+            }
         }
-        else
-        {
-            animator.SetBool("isPlayerBat", false);
-            _moveSpeed /= 1.5f;
-            _soundManager.stopSound("BatFly");
-            _soundManager.playSound("Transformation");
-        }
+    }
+    public void SetCanTransform(bool can)
+    {
+        canTransform = can;
     }
 }
 
