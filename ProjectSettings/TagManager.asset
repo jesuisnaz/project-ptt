@@ -51,3 +51,6 @@ TagManager:
   - name: Player
     uniqueID: 938572189
     locked: 0
+  - name: AngryHuman
+    uniqueID: 3990229961
+    locked: 0

@@ -38,7 +38,7 @@ public class Player : MonoBehaviour, IUnit
     private void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, _movePoint.position, _moveSpeed * Time.deltaTime);
-        if (Input.GetKeyDown(KeyCode.Space)) // TODO: move the logic into pumpkin manager
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             TransformPlayer();
         }
