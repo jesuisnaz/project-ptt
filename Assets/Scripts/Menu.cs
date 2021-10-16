@@ -5,6 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
+    public void Update()
+    {
+        if (Input.GetKeyDown("space"))
+        {
+            PlayGame();
+        }
+    }
     public void PlayGame()
     {
         SceneManager.LoadScene("MainScene");

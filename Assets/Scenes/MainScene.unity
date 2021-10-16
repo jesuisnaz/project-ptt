@@ -121,12 +121,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &32291596 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 9043057937488934050, guid: 9ec66d18d07a147e1ade1df6ca446712,
-    type: 3}
-  m_PrefabInstance: {fileID: 9043057936894758967}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &86647582
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -134,14 +128,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 234906099, guid: 1a92004f9ef7742f08f45bd306b7000b, type: 3}
-      propertyPath: m_Size.x
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 234906099, guid: 1a92004f9ef7742f08f45bd306b7000b, type: 3}
-      propertyPath: m_Size.y
-      value: 0.7
-      objectReference: {fileID: 0}
     - target: {fileID: 2242441295325190163, guid: 1a92004f9ef7742f08f45bd306b7000b,
         type: 3}
       propertyPath: m_Name
@@ -2569,90 +2555,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 9043057936894758967}
   m_PrefabAsset: {fileID: 0}
---- !u!61 &2109950168
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2109950167}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5}
-  m_EdgeRadius: 0
---- !u!50 &2109950169
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2109950167}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
---- !u!95 &2109950170 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 1126495937, guid: 9ec66d18d07a147e1ade1df6ca446712,
-    type: 3}
-  m_PrefabInstance: {fileID: 9043057936894758967}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2109950171
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2109950167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4543fa21e83d82a49b0a74128b0ac968, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _player: {fileID: 2109950174}
-  _movePoint: {fileID: 32291596}
-  _minMapCordinatesPoint: {x: 0, y: 0}
-  _maxMapCordinatesPoint: {x: 31, y: 17}
-  _stoneParent: {fileID: 453868425}
-  _soundManager: {fileID: 287850840}
-  animator: {fileID: 2109950170}
---- !u!114 &2109950174 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9043057938274085049, guid: 9ec66d18d07a147e1ade1df6ca446712,
-    type: 3}
-  m_PrefabInstance: {fileID: 9043057936894758967}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2109950167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7673e6d9ae7817f4684ebffc6ad07d0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &60337810664492000
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2828,28 +2730,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1213037274, guid: 9ec66d18d07a147e1ade1df6ca446712, type: 3}
-      propertyPath: m_PointLightOuterRadius
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1213037274, guid: 9ec66d18d07a147e1ade1df6ca446712, type: 3}
-      propertyPath: m_ApplyToSortingLayers.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1213037274, guid: 9ec66d18d07a147e1ade1df6ca446712, type: 3}
-      propertyPath: m_ApplyToSortingLayers.Array.data[4]
-      value: -304737335
-      objectReference: {fileID: 0}
-    - target: {fileID: 2258082163592888738, guid: 9ec66d18d07a147e1ade1df6ca446712,
-        type: 3}
-      propertyPath: _player
+    - target: {fileID: 2109950171, guid: 9ec66d18d07a147e1ade1df6ca446712, type: 3}
+      propertyPath: _stoneParent
       value: 
-      objectReference: {fileID: 2109950174}
-    - target: {fileID: 2258082163592888738, guid: 9ec66d18d07a147e1ade1df6ca446712,
-        type: 3}
-      propertyPath: animator
+      objectReference: {fileID: 453868425}
+    - target: {fileID: 2109950171, guid: 9ec66d18d07a147e1ade1df6ca446712, type: 3}
+      propertyPath: _soundManager
       value: 
-      objectReference: {fileID: 2109950170}
+      objectReference: {fileID: 287850840}
     - target: {fileID: 2258082163592888738, guid: 9ec66d18d07a147e1ade1df6ca446712,
         type: 3}
       propertyPath: _stoneParent
@@ -2860,46 +2748,6 @@ PrefabInstance:
       propertyPath: _soundManager
       value: 
       objectReference: {fileID: 287850840}
-    - target: {fileID: 2258082163592888738, guid: 9ec66d18d07a147e1ade1df6ca446712,
-        type: 3}
-      propertyPath: _stones.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2258082163592888738, guid: 9ec66d18d07a147e1ade1df6ca446712,
-        type: 3}
-      propertyPath: _stones.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2258082163592888738, guid: 9ec66d18d07a147e1ade1df6ca446712,
-        type: 3}
-      propertyPath: _stones.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2258082163592888738, guid: 9ec66d18d07a147e1ade1df6ca446712,
-        type: 3}
-      propertyPath: _stones.Array.data[2]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2258082163592888738, guid: 9ec66d18d07a147e1ade1df6ca446712,
-        type: 3}
-      propertyPath: _stones.Array.data[3]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2258082163592888738, guid: 9ec66d18d07a147e1ade1df6ca446712,
-        type: 3}
-      propertyPath: _stones.Array.data[4]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2258082163592888738, guid: 9ec66d18d07a147e1ade1df6ca446712,
-        type: 3}
-      propertyPath: _stones.Array.data[5]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 9043057938274085049, guid: 9ec66d18d07a147e1ade1df6ca446712,
-        type: 3}
-      propertyPath: animator
-      value: 
-      objectReference: {fileID: 2109950170}
     - target: {fileID: 9043057938274085049, guid: 9ec66d18d07a147e1ade1df6ca446712,
         type: 3}
       propertyPath: _soundManager
@@ -2910,11 +2758,6 @@ PrefabInstance:
       propertyPath: _pumpkinManager
       value: 
       objectReference: {fileID: 1204114566}
-    - target: {fileID: 9043057938274085049, guid: 9ec66d18d07a147e1ade1df6ca446712,
-        type: 3}
-      propertyPath: _playerController
-      value: 
-      objectReference: {fileID: 2109950171}
     - target: {fileID: 9043057938274085049, guid: 9ec66d18d07a147e1ade1df6ca446712,
         type: 3}
       propertyPath: _TransformationText
