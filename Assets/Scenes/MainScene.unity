@@ -1793,6 +1793,7 @@ MonoBehaviour:
   _Parent: {fileID: 907029086}
   _Player: {fileID: 2109950167}
   _ScoreText: {fileID: 738344837}
+  player: {fileID: 2109950174}
 --- !u!1 &1322547529
 GameObject:
   m_ObjectHideFlags: 0
