@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Vector2 _maxMapCordinatesPoint;
     [SerializeField] private Stone[] _stones;
     [SerializeField] private SoundManager _soundManager;
+    [SerializeField] private Animator animator;
 
     private const float Tolerance = 0.1f;
     private const string HorizontalAxisName = "Horizontal";
@@ -16,7 +17,6 @@ public class PlayerController : MonoBehaviour
    
     public Action<DirectionWrapper> OnMoveChange = delegate {};
     public Action<DirectionWrapper, DirectionWrapper> OnAnimationChange = delegate {};
-    public Animator animator;
 
 
     private bool IsCurrentlyMoving(DirectionWrapper horizontalDirectionWrapper, DirectionWrapper verticalDirectionWrapper)

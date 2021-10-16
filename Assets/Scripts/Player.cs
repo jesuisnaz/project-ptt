@@ -10,9 +10,9 @@ public class Player : MonoBehaviour, IUnit
     [SerializeField] private PumpkinManager _pumpkinManager;
     [SerializeField] private SoundManager _soundManager;
     [SerializeField] private TMPro.TextMeshProUGUI _TransformationText;
+    [SerializeField] private Animator animator;
     private DirectionWrapper _currentDirection;
     private int timeToTransformation;
-    public Animator animator;
     public Vector3 CurrentPosition { get; private set; }
 
     private void Awake()
