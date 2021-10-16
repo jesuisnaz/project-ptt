@@ -1,6 +1,6 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
@@ -63,6 +63,7 @@ public class Timer : MonoBehaviour
         else
         {
             FlashTimer();
+            SceneManager.LoadScene("GameOver");
         }
     }
 
