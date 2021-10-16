@@ -117,7 +117,6 @@ GameObject:
   - component: {fileID: 2258082163592888738}
   - component: {fileID: 2109950169}
   - component: {fileID: 2109950168}
-  - component: {fileID: 2109950171}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -156,11 +155,12 @@ MonoBehaviour:
   _moveSpeed: 5
   _movePoint: {fileID: 9043057937488934050}
   _animator: {fileID: 1126495937}
-  _playerController: {fileID: 2109950171}
+  _playerController: {fileID: 2258082163592888738}
   _pumpkinManager: {fileID: 0}
   _soundManager: {fileID: 0}
   _TransformationText: {fileID: 0}
   animator: {fileID: 1126495937}
+  canTransform: 0
 --- !u!212 &1126495936
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -296,22 +296,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
---- !u!114 &2109950171
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9043057938274085051}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4543fa21e83d82a49b0a74128b0ac968, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _player: {fileID: 9043057938274085049}
-  _movePoint: {fileID: 9043057937488934050}
-  _minMapCordinatesPoint: {x: 0, y: 0}
-  _maxMapCordinatesPoint: {x: 31, y: 17}
-  _stoneParent: {fileID: 0}
-  _soundManager: {fileID: 0}
-  animator: {fileID: 1126495937}
