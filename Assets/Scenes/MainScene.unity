@@ -1779,6 +1779,7 @@ MonoBehaviour:
   _Parent: {fileID: 907029086}
   _Player: {fileID: 2109950167}
   _ScoreText: {fileID: 738344837}
+  player: {fileID: 2109950174}
 --- !u!1 &1322547529
 GameObject:
   m_ObjectHideFlags: 0
@@ -2555,6 +2556,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 9043057936894758967}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2109950174 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9043057938274085049, guid: 9ec66d18d07a147e1ade1df6ca446712,
+    type: 3}
+  m_PrefabInstance: {fileID: 9043057936894758967}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2109950167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7673e6d9ae7817f4684ebffc6ad07d0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &60337810664492000
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2735,16 +2748,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 453868425}
     - target: {fileID: 2109950171, guid: 9ec66d18d07a147e1ade1df6ca446712, type: 3}
-      propertyPath: _soundManager
-      value: 
-      objectReference: {fileID: 287850840}
-    - target: {fileID: 2258082163592888738, guid: 9ec66d18d07a147e1ade1df6ca446712,
-        type: 3}
-      propertyPath: _stoneParent
-      value: 
-      objectReference: {fileID: 453868425}
-    - target: {fileID: 2258082163592888738, guid: 9ec66d18d07a147e1ade1df6ca446712,
-        type: 3}
       propertyPath: _soundManager
       value: 
       objectReference: {fileID: 287850840}
