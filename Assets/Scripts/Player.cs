@@ -10,8 +10,8 @@ public class Player : MonoBehaviour, IUnit
     [SerializeField] private PumpkinManager _pumpkinManager;
     [SerializeField] private SoundManager _soundManager;
     [SerializeField] private TMPro.TextMeshProUGUI _TransformationText;
-    private int timeToTransformation;
     private DirectionWrapper _currentDirection;
+    private int timeToTransformation;
     public Animator animator;
     public Vector3 CurrentPosition { get; private set; }
 
@@ -33,7 +33,6 @@ public class Player : MonoBehaviour, IUnit
         CurrentPosition = _movePoint.position;
         animator.SetBool("isPlayerBat", false);
         timeToTransformation = 500;
-        _TransformationText.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -94,12 +93,16 @@ public class Player : MonoBehaviour, IUnit
         if (animator.GetBool("isPlayerBat") == false)
         {
             animator.SetBool("isPlayerBat", true);
-            _moveSpeed = 7.5f;
+            _moveSpeed *= 1.5f;
+            _soundManager.playSound("Transformation");
+            _soundManager.playSound("BatFly");
         }
         else
         {
             animator.SetBool("isPlayerBat", false);
-            _moveSpeed = 5f;
+            _moveSpeed /= 1.5f;
+            _soundManager.stopSound("BatFly");
+            _soundManager.playSound("Transformation");
         }
     }
 }

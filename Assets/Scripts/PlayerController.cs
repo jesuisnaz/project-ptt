@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Vector2 _minMapCordinatesPoint;
     [SerializeField] private Vector2 _maxMapCordinatesPoint;
     [SerializeField] private Stone[] _stones;
+    [SerializeField] private SoundManager _soundManager;
 
     private const float Tolerance = 0.1f;
     private const string HorizontalAxisName = "Horizontal";
