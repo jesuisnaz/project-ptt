@@ -128,14 +128,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 234906099, guid: 1a92004f9ef7742f08f45bd306b7000b, type: 3}
-      propertyPath: m_Size.x
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 234906099, guid: 1a92004f9ef7742f08f45bd306b7000b, type: 3}
-      propertyPath: m_Size.y
-      value: 0.7
-      objectReference: {fileID: 0}
     - target: {fileID: 2242441295325190163, guid: 1a92004f9ef7742f08f45bd306b7000b,
         type: 3}
       propertyPath: m_Name
@@ -2751,13 +2743,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2258082163592888738, guid: 9ec66d18d07a147e1ade1df6ca446712,
-        type: 3}
+    - target: {fileID: 2109950171, guid: 9ec66d18d07a147e1ade1df6ca446712, type: 3}
       propertyPath: _stoneParent
       value: 
       objectReference: {fileID: 453868425}
-    - target: {fileID: 2258082163592888738, guid: 9ec66d18d07a147e1ade1df6ca446712,
-        type: 3}
+    - target: {fileID: 2109950171, guid: 9ec66d18d07a147e1ade1df6ca446712, type: 3}
       propertyPath: _soundManager
       value: 
       objectReference: {fileID: 287850840}
