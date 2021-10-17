@@ -3,8 +3,12 @@ using UnityEngine;
 
 public class ScaredHuman : MonoBehaviour,  IUnit
 {
-    public Vector3 CurrentPosition { get; private set; }
+    private const string HorizontalAxisName = "Horizontal";
+    private const string VerticalAxisName = "Vertical";
 
+    private static readonly int Vertical = Animator.StringToHash(VerticalAxisName);
+    private static readonly int Horizontal = Animator.StringToHash(HorizontalAxisName);
+    
     [SerializeField] private float _moveSpeed = 15f;
     [SerializeField] private Transform _movePoint;
     [SerializeField] private Animator _animator;
@@ -12,6 +16,7 @@ public class ScaredHuman : MonoBehaviour,  IUnit
     [SerializeField] private SoundManager _soundManager;
     private DirectionWrapper _currentDirection;
 
+    public Vector3 CurrentPosition { get; private set; }
 
     private void Awake()
     {
@@ -38,30 +43,23 @@ public class ScaredHuman : MonoBehaviour,  IUnit
         transform.position = Vector3.MoveTowards(transform.position, _movePoint.position, _moveSpeed * Time.deltaTime);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        // if (other.gameObject.CompareTag("Pumpkin")) {
-        //     _pumpkinManager.PickUpPumpkin(other.gameObject);
-        //     _soundManager.playSound("PumpkinPickedUp");      
-        // }
-        Debug.Log("collision with object: " + other.tag);
-    }
-
     public void Move(DirectionWrapper directionWrapper)
     {
         _movePoint.position += directionWrapper.Vector3Value;
         CurrentPosition = _movePoint.position;
     }
 
-    public void SetAnimator(DirectionWrapper horizontalDirectionWrapper, DirectionWrapper verticalDirectionWrapper)
+    public void SetAnimator(DirectionWrapper directionWrapper)
     {
-        _animator.SetFloat(horizontalDirectionWrapper.AxisName, horizontalDirectionWrapper.AxisValue);
-        _animator.SetFloat(verticalDirectionWrapper.AxisName, verticalDirectionWrapper.AxisValue);
+        _animator.SetFloat(Horizontal, 0);
+        _animator.SetFloat(Vertical, 0);
+        _animator.SetFloat(directionWrapper.AxisName, directionWrapper.AxisValue);
     }
 
     public void Teleport(Vector3 position)
     {
         transform.position = position;
+        _movePoint.position = position;
         CurrentPosition = position;
     }
 }

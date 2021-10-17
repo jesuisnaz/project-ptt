@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour, IUnit
 {
@@ -75,6 +76,9 @@ public class Player : MonoBehaviour, IUnit
         if (other.gameObject.CompareTag("Pumpkin")) {
             _pumpkinManager.PickUpPumpkin(other.gameObject);
             _soundManager.playSound("PumpkinPickedUp");      
+        }
+        if (other.gameObject.CompareTag("ScaredHuman")) {
+            SceneManager.LoadScene("Finish");
         }
         Debug.Log("collision with object: " + other.tag);
     }

@@ -31,7 +31,7 @@ public class DirectionWrapper
             case Direction.Down:
                 Vector3Value = Vector3.down;
                 AxisName = VerticalAxisName;
-                AxisValue = 1f;
+                AxisValue = -1f;
                 break;
             case Direction.Left:
                 Vector3Value = Vector3.left;
@@ -41,7 +41,7 @@ public class DirectionWrapper
             case Direction.Right:
                 Vector3Value = Vector3.right;
                 AxisName = HorizontalAxisName;
-                AxisValue = -1f;
+                AxisValue = 1f;
                 break;
         }
     }
