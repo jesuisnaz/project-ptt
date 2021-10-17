@@ -7,7 +7,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform _movePoint;
     [SerializeField] private Vector2 _minMapCordinatesPoint;
     [SerializeField] private Vector2 _maxMapCordinatesPoint;
-    [SerializeField] private Stone[] _stones;
+    [SerializeField] private GameObject _stoneParent;
+    [SerializeField] private SoundManager _soundManager;
+    [SerializeField] private Animator animator;
 
     private const float Tolerance = 0.1f;
     private const string HorizontalAxisName = "Horizontal";
@@ -15,7 +17,8 @@ public class PlayerController : MonoBehaviour
    
     public Action<DirectionWrapper> OnMoveChange = delegate {};
     public Action<DirectionWrapper, DirectionWrapper> OnAnimationChange = delegate {};
-    
+
+
     private bool IsCurrentlyMoving(DirectionWrapper horizontalDirectionWrapper, DirectionWrapper verticalDirectionWrapper)
     {
         return Mathf.Abs(horizontalDirectionWrapper.AxisValue) != 0f && Mathf.Abs(verticalDirectionWrapper.AxisValue) != 0f;
@@ -30,14 +33,19 @@ public class PlayerController : MonoBehaviour
                               _minMapCordinatesPoint.y <= afterMoveVertical &&
                               afterMoveVertical <= _maxMapCordinatesPoint.y;
         bool isNotStuckIntoStone = true;
-        foreach (var stone in _stones)
+        Debug.Log("before foreach");
+        foreach (var stone in _stoneParent.GetComponentsInChildren<Stone>())
         {
+            Debug.Log("in foreach");
             if (stone.CurrentPosition == afterMovePosition)
             {
                 isNotStuckIntoStone = false;
             }
         }
-        
+        if (animator.GetBool("isPlayerBat") == true)
+        {
+            isNotStuckIntoStone = true;
+        }
         return isWithinBounds && isNotStuckIntoStone;
     }
 
@@ -45,6 +53,7 @@ public class PlayerController : MonoBehaviour
     {
         ControlCommonMovement();
     }
+
 
     private void ControlCommonMovement()
     {
