@@ -31,7 +31,7 @@ public class ScaredHumanController : MonoBehaviour
                               afterMovePosition.y <= _maxMapCordinatesPoint.y;
         bool isNotStuckIntoStone = true;
 
-        bool isNotStuckIntoPlayer = !(Vector3.Distance(afterMovePosition, _player.CurrentPosition) <= 2);
+        bool isNotStuckIntoPlayer = !IsPointNearPlayer(afterMovePosition);
 
         foreach (var stone in _stoneParent.GetComponentsInChildren<Stone>())
         {
@@ -49,10 +49,14 @@ public class ScaredHumanController : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, _movePoint.position) <= Tolerance)
         {
-            if (Random.Range(0, 30) == 1)
+            if (Random.Range(0, 15) == 1)
             {
-                OnTeleport(new Vector3(Random.Range(_minMapCordinatesPoint.x, _maxMapCordinatesPoint.x), 
-                    Random.Range(_minMapCordinatesPoint.y, _maxMapCordinatesPoint.y), 0));
+                Vector3 teleportToPoint = GenerateRandomMapPoint();
+                while (IsPointNearPlayer(teleportToPoint))
+                {
+                    teleportToPoint = GenerateRandomMapPoint();
+                }
+                OnTeleport(teleportToPoint);
                 return;
             }
             
@@ -63,5 +67,16 @@ public class ScaredHumanController : MonoBehaviour
             }
             OnAnimationChange(directionWrapper);
         }
+    }
+
+    private Vector3 GenerateRandomMapPoint()
+    {
+        return new Vector3(Random.Range(_minMapCordinatesPoint.x, _maxMapCordinatesPoint.x),
+            Random.Range(_minMapCordinatesPoint.y, _maxMapCordinatesPoint.y), 0);
+    }
+
+    private bool IsPointNearPlayer(Vector3 point)
+    {
+        return Vector3.Distance(point, _player.CurrentPosition) <= 3;
     }
 }
