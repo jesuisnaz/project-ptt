@@ -21,6 +21,8 @@ public class Timer : MonoBehaviour
 
     [SerializeField]
     private float flashMagnitude = 0.4f; //The half length of the flash
+    [SerializeField]
+    private float flashDuraction = 10f;
 
     private void Start()
     {
@@ -37,7 +39,7 @@ public class Timer : MonoBehaviour
     {
         if (timer > 0)
         {
-            if (timer < 300)
+            if (timer < flashDuraction)
             {
                 FlashTimer();
             }
