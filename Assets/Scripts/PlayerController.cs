@@ -33,10 +33,8 @@ public class PlayerController : MonoBehaviour
                               _minMapCordinatesPoint.y <= afterMoveVertical &&
                               afterMoveVertical <= _maxMapCordinatesPoint.y;
         bool isNotStuckIntoStone = true;
-        Debug.Log("before foreach");
         foreach (var stone in _stoneParent.GetComponentsInChildren<Stone>())
         {
-            Debug.Log("in foreach");
             if (stone.CurrentPosition == afterMovePosition)
             {
                 isNotStuckIntoStone = false;
