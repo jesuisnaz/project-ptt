@@ -2885,6 +2885,11 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 2109950174}
+    - target: {fileID: 4300764615032448542, guid: 2784df5ddbfc3ad44a4fc6e3a75fe5a6,
+        type: 3}
+      propertyPath: _stoneParent
+      value: 
+      objectReference: {fileID: 453868425}
     - target: {fileID: 4300764615032448543, guid: 2784df5ddbfc3ad44a4fc6e3a75fe5a6,
         type: 3}
       propertyPath: _soundManager

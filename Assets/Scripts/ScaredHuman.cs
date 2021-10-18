@@ -9,7 +9,7 @@ public class ScaredHuman : MonoBehaviour,  IUnit
     private static readonly int Vertical = Animator.StringToHash(VerticalAxisName);
     private static readonly int Horizontal = Animator.StringToHash(HorizontalAxisName);
     
-    [SerializeField] private float _moveSpeed = 15f;
+    [SerializeField] private float _moveSpeed = 13f;
     [SerializeField] private Transform _movePoint;
     [SerializeField] private Animator _animator;
     [SerializeField] private ScaredHumanController _scaredHumanController;

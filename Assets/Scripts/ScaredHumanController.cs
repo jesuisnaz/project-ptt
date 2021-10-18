@@ -10,7 +10,7 @@ public class ScaredHumanController : MonoBehaviour
     [SerializeField] private Transform _movePoint;
     [SerializeField] private Vector2 _minMapCordinatesPoint;
     [SerializeField] private Vector2 _maxMapCordinatesPoint;
-    [SerializeField] private Stone[] _stones;
+    [SerializeField] private GameObject _stoneParent;
     [SerializeField] private Player _player;
     
     public Action<DirectionWrapper> OnMoveChange = delegate {};
@@ -33,8 +33,9 @@ public class ScaredHumanController : MonoBehaviour
 
         bool isNotStuckIntoPlayer = !(Vector3.Distance(afterMovePosition, _player.CurrentPosition) <= 2);
 
-        foreach (var stone in _stones)
+        foreach (var stone in _stoneParent.GetComponentsInChildren<Stone>())
         {
+            Debug.Log("in foreach");
             if (stone.CurrentPosition == afterMovePosition)
             {
                 isNotStuckIntoStone = false;
@@ -48,7 +49,7 @@ public class ScaredHumanController : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, _movePoint.position) <= Tolerance)
         {
-            if (Random.Range(0, 60) == 1)
+            if (Random.Range(0, 30) == 1)
             {
                 OnTeleport(new Vector3(Random.Range(_minMapCordinatesPoint.x, _maxMapCordinatesPoint.x), 
                     Random.Range(_minMapCordinatesPoint.y, _maxMapCordinatesPoint.y), 0));
