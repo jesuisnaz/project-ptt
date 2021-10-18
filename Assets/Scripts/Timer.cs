@@ -19,8 +19,10 @@ public class Timer : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI secondSecond;
 
+    private const float DeltaTime = 1f;
+    private const float HalfDeltaTime = DeltaTime/2f;
     [SerializeField]
-    private float flashMagnitude = 0.4f; //The half length of the flash
+    private float flashMagnitude = 0.4f; //The half length of the flash(enabled text)
     [SerializeField]
     private float flashDuraction = 10f;
 
@@ -71,14 +73,7 @@ public class Timer : MonoBehaviour
 
     private void FlashTimer()
     {
-        if (Mathf.Abs(timer % 1 - 0.5f) < flashMagnitude)
-        {
-            SetTextDisplay(true);
-        }
-        else
-        {
-            SetTextDisplay(false);
-        }
+        SetTextDisplay(Mathf.Abs(timer % DeltaTime - HalfDeltaTime) < flashMagnitude);
     }
 
     private void SetTextDisplay(bool enabled)
