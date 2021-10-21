@@ -1,3 +1,5 @@
+To start the game run Build_0.1.0/BooBeesTest.exe
+
 To move use W, A, S, D keyboard keys, or UP, LEFT, DOWN, RIGHT keyboard keys. 
 
 You unlock the ability to transform into a bat each time you collect 10 pumpkins and can use it by pressing SPACE bar. To transform back to vampire press SPACE bar or wait 10 seconds to be transformed automatically.
